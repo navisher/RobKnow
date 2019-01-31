@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+  编辑"{{ course.title }}"的模块
+{% endblock %}
+{% block content %}
+  <h1>编辑"{{course.title }}"的模块</h1>
+  <div class="module">
+    <h2>课程模块</h2>
+    <form action="" method="POST">
+      {{ formset }}
+      {{ formset.management_form }}
+      {% csrf_token %}
+      <input type="submit" class="button" value="保存模块">
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %} 
+  {{object.title}}
+{% endblock %}
+
+{% block content %}
+<h1>
+  {{object.title}}
+</h1>
+{% with topics=course.topic.all %}
+  <h1>
+    {{object.title}}
+  </h1>
+  <div class="module">
+    <h2>概览</h2>
+    <p>
+      {% for topic in topics %}
+        <a href="{% url 'course_list_topic' topic.slug %}">{{topic.title}}</a>
+      {% endfor %}
+      {{course.modules.count }}个模块.
+      讲师: {{course.owner.get_full_name}}
+    </p>
+    {{object.overview|linebreaks}}
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'student_enroll_course' %}" method="POST">
+        {{enroll_form}}
+        {% csrf_token %}
+        <input type="submit" class="button" value="加入该课程">
+      </form>
+    {% else %}
+      <a href="{% url 'student_registration' %}" class="button">注册以加入该课程</a>    
+    {% endif %}
+  </div>
+{% endwith %}
+
+{% endblock %}
+

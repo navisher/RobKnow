@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+    
+{% block title %}
+    我的课程
+{% endblock %}
+{% block content %}
+  <h1>我的课程</h1>
+  <div class="module">
+    {% for course in object_list %}
+      <div class="course-info">
+        <h3>{{ course.title }}</h3>
+        <p><a href="{% url 'student_course_detail' course.id %}">进入课程</a></p>
+      </div>
+    {% empty %}
+      <p>你还没有加入任何课程
+        <a href="{% url 'course_list' %}">浏览课程</a>以加入
+      </p>
+    {% endfor %}
+  </div>
+{% endblock %}
