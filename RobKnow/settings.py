@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'o^ufj2s&yhfficl@ynht+!zrt$2$qx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['agile-citadel-65280.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['agile-citadel-65280.herokuapp.com']
 
 
 # Application definition
@@ -84,8 +84,10 @@ WSGI_APPLICATION = 'RobKnow.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'RobKnow',
+        'USER': 'RobKnow',
+        'PASSWORD': 'jlzhll',
     }
 }
 
@@ -134,14 +136,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
