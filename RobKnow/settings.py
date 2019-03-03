@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'o^ufj2s&yhfficl@ynht+!zrt$2$qx9+@&27_yc_^%q-gr6xi*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = 'True'
 
 ALLOWED_HOSTS = ['agile-citadel-65280.herokuapp.com']
 
